@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% comment %} Creacion del formularion
+El action es para decir a donde mandar el formulario {% endcomment %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4" mt-5>
+            <form action="" method="POST" clas="card card-body text-center"> 
+                <br>
+                <h1 class="text-center">Sign up</h1>
+                {% comment %} Asegura que el formulario está creado por nuestro servidor {% endcomment %}
+                {%csrf_token%}
+                {% comment %}  pasamos el mensaje de error que viene de la view {% endcomment %}
+                {{error}}
+                <div class="mb-3">
+                    <br>
+                    <label for="username">Nombre de usuario: </label>
+                    <input type="text" name="username" id="username" class="form-control" placeholder="Username">
+                    <br>
+                    <label for="password1">Contraseña: </label>
+                    <input type="password" name="password1" id="password1" class="form-control" placeholder="Password">
+                    <br>
+                    <label for="password2">Confirma tu contraseña: </label>
+                    <input type="password" name="password2" id="password2" class="form-control" placeholder="Password">
+
+                </div>
+            
+                <button class = "btn btn-dark">
+                    Registrarse
+                </button>
+            </form>
+        </div>
+    </div>
+</main>
+{% endblock %}

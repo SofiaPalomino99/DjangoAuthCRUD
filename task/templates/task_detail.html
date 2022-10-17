@@ -1,0 +1,40 @@
+{% extends 'base.html'%}{% comment %} Para heredar la base {% endcomment %}
+
+{% block content %}
+<main class="conteiner">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <h1 class="text-secondary">{{task.title}}</h1>
+            {{error}}
+            <p>
+                {{task.content}}
+            </p>
+            <!-- Para mostrar el formulario de la tarea seleccionada -->
+            <form action="" method = "POST">
+                {%csrf_token%}
+                {{form.as_p}}
+                <button class="btn btn-dark">
+                    Guardar
+                </button>
+            </form>        
+                    <!-- Para poder marcar una tarea como completada, la informacion 
+                        del formulario se pasa a la url complete_task y se le pasa el id de la tarea -->
+            <div class="mt-3 d-flex">
+                <form action="{% url 'complete_task' task.id%}" method = 'POST'>
+                    {%csrf_token%}
+                    <button class="btn btn-secondary">
+                        Completada
+                    </button>
+                </form>
+                <!-- Para eliminar una tarea  -->
+                <form action="{% url 'delete_task' task.id%}" method = 'POST'>
+                    {%csrf_token%}
+                    <button class="btn btn-danger">
+                        Eliminar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}
